@@ -10,7 +10,7 @@ The complete dataset has 42 categories with about 210k records in total. Each re
 
 ## Methodology
 ### Feature Extraction
-	According to the distribution above, some of the categories only have less than 1k records and some other categories have over 10k records. In another word, the dataset is imbalanced among all those categories. This kind of uneven distribution of observations will make the model pay more attention to the categories with more records. It is true that we can do resampling to minimize the problem of data skew, only top 15 categories are kept to achieve the best performance of the model and increase the speed of training.
+According to the distribution above, some of the categories only have less than 1k records and some other categories have over 10k records. In another word, the dataset is imbalanced among all those categories. This kind of uneven distribution of observations will make the model pay more attention to the categories with more records. It is true that we can do resampling to minimize the problem of data skew, only top 15 categories are kept to achieve the best performance of the model and increase the speed of training.
 ### Data Cleaning
 Cleaning data before training is good to extract the most important part in a sentence. The short description will contain links, punctuation, stopwords and many other words that don't give a lot of meaning for the training process for prediction. I implemented the text-processing to remove these words with less contribution to the result.
 ### Dataset Resampling
