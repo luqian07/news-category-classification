@@ -1,2 +1,20 @@
 # news-category-classification
 This repository contains code for news category classification project. I used KNN, Multinomial NB and LSTM models to predict the category of each news.
+
+## Introduction
+Before the beginning of last decade, accessing news information was not as easy and quick as it is now. However, with the advent of online news services and other content providers, it has become much more convenient to get access to the latest news. Classification is quite a challenging field in text mining as it requires prepossessing steps to convert unstructured data to structured information. There are a variety of real-life applications where text classification can be successfully implemented. One of the advanced fields where text classification can be intelligently applied is the classification of electronic news content##. This is particularly relevant for news articles, where there is a need to quickly and accurately identify the topic or focus of an article. One of the challenges of classifying news articles is that new articles are constantly being published, and some of these articles may contain information that does not fit into any existing category. This can make it difficult for classification models to accurately categorize these articles, as they may not have been trained on this type of information. In this paper, we constructed an NLP model that can classify news with headlines and short descriptions into the 15 most popular categories. It can reduce misoperation when authors categorize their articles and help news readers to effectively target the news they are interested in.
+
+## Dataset
+The dataset I used for the project is the News Category Dataset which is accessible on Kaggle, which can be accessed through: https://www.kaggle.com/datasets/rmisra/news-category-dataset
+The complete dataset has 42 categories with about 210k records in total. Each record in the dataset is JSON-formatted with 6 labels that provide information about this news. In this project,I used only headline and short_description labels to predict the category a news belongs to and eliminate link, author, and date labels.
+
+## Methodology
+### Feature Extraction
+	According to the distribution above, some of the categories only have less than 1k records and some other categories have over 10k records. In another word, the dataset is imbalanced among all those categories. This kind of uneven distribution of observations will make the model pay more attention to the categories with more records. It is true that we can do resampling to minimize the problem of data skew, only top 15 categories are kept to achieve the best performance of the model and increase the speed of training.
+### Data Cleaning
+Cleaning data before training is good to extract the most important part in a sentence. The short description will contain links, punctuation, stopwords and many other words that don't give a lot of meaning for the training process for prediction. I implemented the text-processing to remove these words with less contribution to the result.
+### Dataset Resampling
+As said in the first step, the dataset is imbalanced and resampling is needed. I chose upsampling over downsampling because of the large imbalance among the categories. Although upsampling may introduce more noise than the original dataset, it is much better compared to the loss of data caused by downsampling. In addition to that, the method of neural networks will need a lot of data to achieve better performance.
+### Text Vectorizing and dimension reduction
+These two steps convert the human readable dataset into vectors of numbers. TF-IDF is used here to convert a collection of raw documents to a matrix of TF-IDF features. It takes the frequency of words into consideration to reflect the importance of the word. The dimensions of these matrices are usually very high and will cause performance issues for the model training. Especially for methods like KNN, which involves a lot of floating computation. After testing, dimensions of 7 is a good number to generate decent results in an acceptable training time.
+
